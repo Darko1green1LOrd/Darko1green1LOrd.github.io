@@ -2,10 +2,77 @@
 
 <html>
     <head>
-    	<script src="js/script.js"></script>
+    	<title>Message Hider</title>
+    	<script src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
     <head>
-    <body>
-    	<button type="button">Klikni Sem</button>
-    	<p id="hiddenmessage" style="display:none">Text</p>
+    <body onload="runonload()">
+        <div class="main">
+            <p class="sm_text bt">Darko s message hider</p>
+            <div class="bl">
+                <label for="byte_length">Byte Length:</label>
+                <input type="number" min="7" value="7" id="byte_length" oninput="this.value = !!this.value && Math.abs(this.value) >= 7 ? Math.abs(this.value) : null">
+            </div>
+            <div class="zero">
+                <label for="zero_var">0 Is Unicode charcode:</label>
+                <input type="text" placeholder="test" value="200D" id="zero_var">
+            </div>
+            <div class="one">
+                <label for="one_var">1 Is Unicode charcode:</label>
+                <input type="text" placeholder="test" value="2062" id="one_var">
+            </div>
+            <div class="btns">
+                <button type="button" id="encr_mode" class="selected" onclick="encrypt_mode()">Encrypt Mode</button>
+                <button type="button" id="decr_mode" onclick="decrypt_mode()">Decrypt Mode</button>
+                <button type="button" id="charc_mode" onclick="charc_mode()">Charcodes</button>
+            </div>
+            <div class="encrypt">
+                <p class="e_text">Encrypt/Hide</p>
+                <div class="dmsg">
+                    <label class="dmsg_text newline" for="DecoyMsg">Decoy Message(Must be empty or contain atleast one space):</label>
+                    <textarea id="DecoyMsg_encr" name="DecoyMsg" rows="6" cols="150">Hello There</textarea>
+                </div>
+                <div class="hiddenmsg">
+                    <label class="hmsg_text newline" for="HideMsg">Hidden Message:</label>
+                    <textarea id="HideMsg_encr" name="HideMsg" rows="6" cols="150">Super secret text</textarea>
+                </div>
+                <div class="encrypted">
+                    <label class="hdnmsg_text newline" for="HiddenMsg">Encrypted Message:</label>
+                    <textarea disabled id="HiddenMsg_encr" name="HiddenMsg" rows="6" cols="150"></textarea>
+                </div>
+                <div class="btns">
+                    <button type="button" id="encrypt_encr" onclick="encrypt()">Encrypt</button>
+                    <button type="button" id="copy_encr" onclick="copytext('HiddenMsg_encr')" disabled>Copy</button>
+                </div>
+            </div>
+            <div class="decrypt">
+                <p class="e_text">Decrypt/Reveal</p>
+                <div class="hiddenmsg">
+                    <label class="hmsg_text newline" for="HideMsg">Paste the message with secret here:</label>
+                    <textarea id="secretmsg_decr" name="HideMsg" rows="6" cols="150">Normal Looking Text</textarea>
+                </div>
+                <div class="decrypted">
+                    <label class="hdnmsg_text newline" for="HiddenMsg">Decrypted Message:</label>
+                    <textarea disabled id="HiddenMsg_decr" name="HiddenMsg" rows="6" cols="150"></textarea>
+                </div>
+                <div class="btns">
+                    <button type="button" id="encrypt_decr" onclick="decrypt()">Decrypt</button>
+                    <button type="button" id="copy_decr" onclick="copytext('HiddenMsg_decr')" disabled>Copy</button>
+                </div>
+            </div>
+            <div class="charcodes">
+                <p class="e_text">Charcodes</p>
+                <div class="all_charcodes">
+                    <label class="hdnmsg_text newline" for="all_charcodess">Invisible charcode suggestions if you want to change it up</label>
+                    <textarea disabled id="all_charcodes" name="all_charcodes" rows="6" cols="150">200D 2061 200C 2063 2064 2062</textarea>
+                </div>
+            </div>
+        </div>
+        <!-- The Modal/popup info box -->
+        <div id="infobox" class="infob">
+            <div class="infob-content">
+                <p id="popup_text"></p>
+            </div>
+        </div>
     </body>
 </html>
