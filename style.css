@@ -1,0 +1,165 @@
+:root {
+    --main-color: #0ca21d;
+    --med-color: #0ebe20;
+    --text-color : #aafbb5;
+    --disabled-main: #6ca271;
+    --bg-color: #2b2d2b;
+    --secondary-color: #131413;
+    --third-color: #171817;
+    --selected-color: #000;
+    --disabled-color: #442323;
+}
+
+
+
+/*
+-------
+Main colorings
+-------
+*/
+* {
+    font-family: courier;
+    font-weight: 300;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+label {
+    color: var(--main-color);
+}
+
+p {
+    color: var(--text-color);
+}
+
+input, textarea {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: var(--third-color);
+    border: 1px solid var(--selected-color);
+    color: var(--text-color);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    border: 1px solid var(--bg-color);
+    color: var(---selected-color);
+    cursor: pointer;
+    font-weight: 1000;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: var(--med-color);
+}
+
+button:active {
+    background-color: var(--text-color);
+}
+
+button.selected {
+    background-color: var(--text-color);
+}
+
+button[disabled] {
+    background-color: var(--disabled-main);
+    color: var(--bg-color);
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+            appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    border: 1px solid var(--text-color);
+}
+
+.bt {
+    font-size: 20px;
+}
+
+.newline {
+    display:block;
+}
+
+
+
+/*
+-------
+Popup window
+-------
+*/
+.infob {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Content/Box */
+.infob-content {
+  background-color: var(--bg-color);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid var(--main-color);
+  width: 80%;
+}
+
+
+/*
+-------
+Main
+-------
+*/
+.main {
+    text-align: center;
+}
+
+/*Encrypt*/
+.main > .encrypt {
+    margin-top: 5px;
+    border: 3px solid var(--selected-color);
+    padding: 5px;
+    background-color: var(--secondary-color);
+    display: inline-block;
+}
+
+
+/*decrypt*/
+.main > .decrypt {
+    display: none;
+    margin-top: 5px;
+    border: 3px solid var(--selected-color);
+    padding: 5px;
+    background-color: var(--secondary-color);
+}
+
+/*charcodes*/
+.main > .charcodes {
+    display: none;
+    margin-top: 5px;
+    border: 3px solid var(--selected-color);
+    padding: 5px;
+    background-color: var(--secondary-color);
+}
