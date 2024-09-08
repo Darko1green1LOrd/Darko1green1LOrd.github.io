@@ -3,6 +3,7 @@
 <html>
     <head>
     	<title>Message Hider</title>
+    	<script src="xxtea.min.js" type="text/javascript"></script>
     	<script src="script.js"></script>
         <link rel="stylesheet" href="style.css">
     <head>
@@ -15,11 +16,15 @@
             </div>
             <div class="zero">
                 <label for="zero_var">0 Is Unicode charcode:</label>
-                <input type="text" placeholder="test" value="200D" id="zero_var">
+                <input type="text" placeholder="0 Unicode" value="200D" id="zero_var">
             </div>
             <div class="one">
                 <label for="one_var">1 Is Unicode charcode:</label>
-                <input type="text" placeholder="test" value="2062" id="one_var">
+                <input type="text" placeholder="1 Unicode" value="2062" id="one_var">
+            </div>
+            <div class="pwd">
+                <label for="pwd_var">Password:</label>
+                <input type="text" placeholder="No Password" value="" id="pwd_var">
             </div>
             <div class="btns">
                 <button type="button" id="encr_mode" class="selected" onclick="encrypt_mode()">Encrypt Mode</button>
