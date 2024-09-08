@@ -23,7 +23,7 @@ function copytext(elemid) { //https://masteringjs.io/tutorials/fundamentals/copy
     element.disabled = false;
 
     element.select();
-    element.setSelectionRange(0, 99999);
+    element.setSelectionRange(0, element.value.length);
     document.execCommand('copy');
     element.disabled = true;
 }
@@ -55,8 +55,10 @@ function binary2Text(byte_length,text) { //https://stackoverflow.com/questions/1
 
 function encrypt(){
     const bytelength = document.querySelector('#byte_length').valueAsNumber;
-    const zero = String.fromCharCode(parseInt(document.querySelector('#zero_var').value, 16));
-    const one = String.fromCharCode(parseInt(document.querySelector('#one_var').value, 16));
+    const zero_elem = document.querySelector('#zero_var');
+    const one_elem = document.querySelector('#one_var');
+    const zero = String.fromCharCode(parseInt(zero_elem.value, 16));
+    const one = String.fromCharCode(parseInt(one_elem.value, 16));
     const password = document.querySelector('#pwd_var').value;
     const decoymsg = document.querySelector('#DecoyMsg_encr').value;
     if(password.length > 0){var hiddenmsg = XXTEA.encryptToBase64(document.querySelector('#HideMsg_encr').value,btoa(password));}
@@ -64,7 +66,7 @@ function encrypt(){
     const output = document.querySelector('#HiddenMsg_encr');
     const copybtn = document.querySelector('#copy_encr')
 
-    if(hiddenmsg.length > 0 && zero != one){
+    if(hiddenmsg.length > 0 && zero != one && zero_elem.value.length > 0 && one_elem.value.length > 0){
         try{
             var bin_encoded = text2Binary(bytelength,hiddenmsg);
             var btn_hidden = bin_encoded.replaceAll("0",zero).replaceAll("1",one)
@@ -91,6 +93,16 @@ function encrypt(){
         output.value = "";
         showmsg("Zero and one cannot be the same unicode");
     }
+    else if(zero_elem.value.length == 0){
+        copybtn.disabled = true;
+        output.value = "";
+        showmsg("Zero cannot be nothing");
+    }
+    else if(one_elem.value.length == 0){
+        copybtn.disabled = true;
+        output.value = "";
+        showmsg("One cannot be nothing");
+    }
     else{
         copybtn.disabled = true;
         output.value = "";
@@ -100,15 +112,17 @@ function encrypt(){
 
 function decrypt(){
     const bytelength = document.querySelector('#byte_length').valueAsNumber;
-    const zero = String.fromCharCode(parseInt(document.querySelector('#zero_var').value, 16));
-    const one = String.fromCharCode(parseInt(document.querySelector('#one_var').value, 16));
+    const zero_elem = document.querySelector('#zero_var');
+    const one_elem = document.querySelector('#one_var');
+    const zero = String.fromCharCode(parseInt(zero_elem.value, 16));
+    const one = String.fromCharCode(parseInt(one_elem.value, 16));
     const password = document.querySelector('#pwd_var').value;
     var hiddenmsg = document.querySelector('#secretmsg_decr').value;
     const output = document.querySelector('#HiddenMsg_decr');
     const copybtn = document.querySelector('#copy_decr')
     copybtn.disabled = false;
 
-    if(hiddenmsg.length > 0){
+    if(hiddenmsg.length > 0 && zero != one && zero_elem.value.length > 0 && one_elem.value.length > 0){
         if(hiddenmsg.includes(zero) ||hiddenmsg.includes(one)){
             var regrem = new RegExp('[^'+zero+one+']', 'g');
             hiddenmsg = hiddenmsg.replace(regrem,"");
@@ -121,15 +135,30 @@ function decrypt(){
             output.value = decrypted_text;
         }
         else{
-            showmsg("This Message Doesnt contain any hidden message");
             output.value = "";
             copybtn.disabled = true;
+            showmsg("This Message Doesnt contain any hidden message");
         }
     }
-    else{
-        showmsg("First fiend cannot be empty");
+    else if(one == zero){
         output.value = "";
         copybtn.disabled = true;
+        showmsg("Zero and one cannot be the same unicode");
+    }
+    else if(zero_elem.value.length == 0){
+        output.value = "";
+        copybtn.disabled = true;
+        showmsg("Zero cannot be nothing");
+    }
+    else if(one_elem.value.length == 0){
+        output.value = "";
+        copybtn.disabled = true;
+        showmsg("One cannot be nothing");
+    }
+    else{
+        output.value = "";
+        copybtn.disabled = true;
+        showmsg("First field cannot be empty");
     }
 }
 
