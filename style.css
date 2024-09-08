@@ -43,6 +43,10 @@ input, textarea {
     color: var(--text-color);
 }
 
+#pwd_var {
+    width: 300px;
+}
+
 button {
     padding: 10px 20px;
     background-color: var(--main-color);
