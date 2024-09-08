@@ -66,7 +66,7 @@ function encrypt(){
     const output = document.querySelector('#HiddenMsg_encr');
     const copybtn = document.querySelector('#copy_encr')
 
-    if(hiddenmsg.length > 0 && zero != one && zero_elem.value.length > 0 && one_elem.value.length > 0){
+    if(hiddenmsg.length > 0 && zero != one && zero_elem.value.length > 0 && one_elem.value.length > 0 && isNaN(bytelength) == false){
         try{
             var bin_encoded = text2Binary(bytelength,hiddenmsg);
             var btn_hidden = bin_encoded.replaceAll("0",zero).replaceAll("1",one)
@@ -92,6 +92,11 @@ function encrypt(){
         copybtn.disabled = true;
         output.value = "";
         showmsg("Zero and one cannot be the same unicode");
+    }
+    else if(isNaN(bytelength)){
+        copybtn.disabled = true;
+        output.value = "";
+        showmsg("Byte Length Cannot be nothing");
     }
     else if(zero_elem.value.length == 0){
         copybtn.disabled = true;
@@ -122,7 +127,7 @@ function decrypt(){
     const copybtn = document.querySelector('#copy_decr')
     copybtn.disabled = false;
 
-    if(hiddenmsg.length > 0 && zero != one && zero_elem.value.length > 0 && one_elem.value.length > 0){
+    if(hiddenmsg.length > 0 && zero != one && zero_elem.value.length > 0 && one_elem.value.length > 0 && isNaN(bytelength) == false){
         if(hiddenmsg.includes(zero) ||hiddenmsg.includes(one)){
             var regrem = new RegExp('[^'+zero+one+']', 'g');
             hiddenmsg = hiddenmsg.replace(regrem,"");
@@ -144,6 +149,11 @@ function decrypt(){
         output.value = "";
         copybtn.disabled = true;
         showmsg("Zero and one cannot be the same unicode");
+    }
+    else if(isNaN(bytelength)){
+        output.value = "";
+        copybtn.disabled = true;
+        showmsg("Byte Length Cannot be nothing");
     }
     else if(zero_elem.value.length == 0){
         output.value = "";
