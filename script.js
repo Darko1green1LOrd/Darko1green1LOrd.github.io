@@ -65,17 +65,25 @@ function encrypt(){
     const copybtn = document.querySelector('#copy_encr')
 
     if(hiddenmsg.length > 0 && zero != one){
-        var bin_encoded = text2Binary(bytelength,hiddenmsg);
-        var btn_hidden = bin_encoded.replaceAll("0",zero).replaceAll("1",one)
-        var i = decoymsg.indexOf(' ');
-        var decoy_splits = [decoymsg.slice(0,i), decoymsg.slice(i+1)];
-        copybtn.disabled = false;
-        if(decoymsg.length == 0){output.value = btn_hidden;}
-        else if(decoymsg.split(" ").length > 1){output.value = decoy_splits[0]+btn_hidden+" "+decoy_splits[1];}
-        else {
-            output.value = "";
+        try{
+            var bin_encoded = text2Binary(bytelength,hiddenmsg);
+            var btn_hidden = bin_encoded.replaceAll("0",zero).replaceAll("1",one)
+            var i = decoymsg.indexOf(' ');
+            var decoy_splits = [decoymsg.slice(0,i), decoymsg.slice(i+1)];
+            copybtn.disabled = false;
+            if(decoymsg.length == 0){output.value = btn_hidden;}
+            else if(decoymsg.split(" ").length > 1){output.value = decoy_splits[0]+btn_hidden+" "+decoy_splits[1];}
+            else {
+                output.value = "";
+                copybtn.disabled = true;
+                showmsg("Decoy msg has to be either empty or contain atleast one space");
+            }
+        }
+        catch (e){
             copybtn.disabled = true;
-            showmsg("Decoy msg has to be either empty or contain atleast one space");
+            output.value = "";
+            if (e instanceof RangeError){showmsg("Hiding error, characters like ľščťžýáíéđŧø can cause this");}
+            else{showmsg("Hiding error, reason unknown   "+e);}
         }
     }
     else if(one == zero){
