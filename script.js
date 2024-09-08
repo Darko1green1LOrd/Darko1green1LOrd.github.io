@@ -57,13 +57,15 @@ function encrypt(){
     const bytelength = document.querySelector('#byte_length').valueAsNumber;
     const zero = String.fromCharCode(parseInt(document.querySelector('#zero_var').value, 16));
     const one = String.fromCharCode(parseInt(document.querySelector('#one_var').value, 16));
+    const password = document.querySelector('#pwd_var').value;
     const decoymsg = document.querySelector('#DecoyMsg_encr').value;
-    const hiddenmsg = document.querySelector('#HideMsg_encr');
+    if(password.length > 0){var hiddenmsg = XXTEA.encryptToBase64(document.querySelector('#HideMsg_encr').value,btoa(password));}
+    else{var hiddenmsg = document.querySelector('#HideMsg_encr').value;}
     const output = document.querySelector('#HiddenMsg_encr');
     const copybtn = document.querySelector('#copy_encr')
 
-    if(hiddenmsg.value.length > 0 && zero != one){
-        var bin_encoded = text2Binary(bytelength,hiddenmsg.value);
+    if(hiddenmsg.length > 0 && zero != one){
+        var bin_encoded = text2Binary(bytelength,hiddenmsg);
         var btn_hidden = bin_encoded.replaceAll("0",zero).replaceAll("1",one)
         var i = decoymsg.indexOf(' ');
         var decoy_splits = [decoymsg.slice(0,i), decoymsg.slice(i+1)];
@@ -92,6 +94,7 @@ function decrypt(){
     const bytelength = document.querySelector('#byte_length').valueAsNumber;
     const zero = String.fromCharCode(parseInt(document.querySelector('#zero_var').value, 16));
     const one = String.fromCharCode(parseInt(document.querySelector('#one_var').value, 16));
+    const password = document.querySelector('#pwd_var').value;
     var hiddenmsg = document.querySelector('#secretmsg_decr').value;
     const output = document.querySelector('#HiddenMsg_decr');
     const copybtn = document.querySelector('#copy_decr')
@@ -102,7 +105,12 @@ function decrypt(){
             var regrem = new RegExp('[^'+zero+one+']', 'g');
             hiddenmsg = hiddenmsg.replace(regrem,"");
             hiddenmsg = hiddenmsg.replaceAll(zero,"0").replaceAll(one,"1");
-            output.value = binary2Text(bytelength,hiddenmsg);
+            if(password.length > 0){
+                try{var decrypted_text = XXTEA.decryptFromBase64(binary2Text(bytelength,hiddenmsg),btoa(password));}
+                catch (e){showmsg("The message you are trying to decrypt is not password locked or the password is incorrect");}
+            }
+            else{var decrypted_text = binary2Text(bytelength,hiddenmsg);}
+            output.value = decrypted_text;
         }
         else{
             showmsg("This Message Doesnt contain any hidden message");
