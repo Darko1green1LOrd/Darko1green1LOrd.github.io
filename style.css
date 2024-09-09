@@ -23,11 +23,39 @@ Main colorings
 }
 
 body {
-    background-color: var(--bg-color);
+    background-size: 500% 500%;
+    background-image: linear-gradient(-45deg, var(--bg-color), var(--selected-color), var(--bg-color) 100%);
+    -webkit-animation: AnimateBG 20s ease infinite;
+    animation: AnimateBG 20s ease infinite;
+}
+
+@-webkit-keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 label {
     color: var(--main-color);
+    background-color: var(--secondary-color)
 }
 
 p {
@@ -55,17 +83,31 @@ button {
     cursor: pointer;
     font-weight: 1000;
     font-size: 15px;
+    -webkit-transition: border-radius 0.5s ease;
+    -ms-transition: border-radius 0.5s ease;
+    transition: border-radius 0.5s ease;
 }
 
-button:hover {
+button:hover:enabled {
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
     background-color: var(--med-color);
+    border-radius: 10px;
+    border: 1px solid var(--text-color);
 }
 
-button:active {
+button:active:enabled {
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
     background-color: var(--text-color);
 }
 
-button.selected {
+button.selected:enabled {
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
     background-color: var(--text-color);
 }
 
@@ -85,6 +127,14 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+input:hover,
+textarea:hover{
+    border: 1px solid var(--main-color);
+    -webkit-transition: border 100ms linear;
+    -ms-transition: border 100ms linear;
+    transition: border 100ms linear;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
@@ -100,7 +150,6 @@ button:focus {
 .newline {
     display:block;
 }
-
 
 
 /*
@@ -139,31 +188,62 @@ Main
 .main {
     text-align: center;
 }
+.control-panel > div:nth-of-type(-n+4) {
+  background-color: var(--secondary-color);
+  display: inline-block;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  border: 2px dotted var(--main-color);
+}
 
 /*Encrypt*/
 .main > .encrypt {
-    margin-top: 5px;
+    margin-top: 10px;
     border: 3px solid var(--selected-color);
     padding: 5px;
     background-color: var(--secondary-color);
     display: inline-block;
+    -webkit-transition: box-shadow 0.5s ease;
+    -ms-transition: box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease;
+}
+
+.main > .encrypt:hover {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px var(--main-color);
 }
 
 
 /*decrypt*/
 .main > .decrypt {
     display: none;
-    margin-top: 5px;
+    margin-top: 10px;
     border: 3px solid var(--selected-color);
     padding: 5px;
     background-color: var(--secondary-color);
+    -webkit-transition: box-shadow 0.5s ease;
+    -ms-transition: box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease;
+}
+
+.main > .decrypt:hover {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px var(--main-color);
 }
 
 /*charcodes*/
 .main > .charcodes {
     display: none;
-    margin-top: 5px;
+    margin-top: 10px;
     border: 3px solid var(--selected-color);
     padding: 5px;
     background-color: var(--secondary-color);
+    -webkit-transition: box-shadow 0.5s ease;
+    -ms-transition: box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease;
+}
+
+.main > .charcodes:hover {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px var(--main-color);
 }
