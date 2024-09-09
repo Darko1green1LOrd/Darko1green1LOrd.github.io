@@ -176,41 +176,72 @@ function encrypt_mode(){
     const encbtn = document.querySelector('#encr_mode');
     const decrbtn = document.querySelector('#decr_mode');
     const charcbtn = document.querySelector('#charc_mode');
+    const pinfobtn = document.querySelector('#info_mode');
     const enc = document.getElementsByClassName("encrypt")[0];
     const decr = document.getElementsByClassName("decrypt")[0];
     const char = document.getElementsByClassName("charcodes")[0];
+    const pinfo = document.getElementsByClassName("pageinfo")[0];
     encbtn.classList = "selected";
     decrbtn.classList = "";
     charcbtn.classList = "";
+    pinfobtn.classList = "";
     enc.style.display = "inline-block";
     decr.style.display = "none";
     char.style.display = "none";
+    pinfo.style.display = "none";
 }
 function decrypt_mode(){
     const encbtn = document.querySelector('#encr_mode');
     const decrbtn = document.querySelector('#decr_mode');
     const charcbtn = document.querySelector('#charc_mode');
+    const pinfobtn = document.querySelector('#info_mode');
     const enc = document.getElementsByClassName("encrypt")[0];
     const decr = document.getElementsByClassName("decrypt")[0];
     const char = document.getElementsByClassName("charcodes")[0];
+    const pinfo = document.getElementsByClassName("pageinfo")[0];
     decrbtn.classList = "selected";
     encbtn.classList = "";
     charcbtn.classList = "";
+    pinfobtn.classList = "";
     decr.style.display = "inline-block";
     enc.style.display = "none";
     char.style.display = "none";
+    pinfo.style.display = "none";
 }
 function charc_mode(){
     const encbtn = document.querySelector('#encr_mode');
     const decrbtn = document.querySelector('#decr_mode');
     const charcbtn = document.querySelector('#charc_mode');
+    const pinfobtn = document.querySelector('#info_mode');
     const enc = document.getElementsByClassName("encrypt")[0];
     const decr = document.getElementsByClassName("decrypt")[0];
     const char = document.getElementsByClassName("charcodes")[0];
+    const pinfo = document.getElementsByClassName("pageinfo")[0];
     decrbtn.classList = "";
     encbtn.classList = "";
     charcbtn.classList = "selected";
+    pinfobtn.classList = "";
     decr.style.display = "none";
     enc.style.display = "none";
     char.style.display = "inline-block";
+    pinfo.style.display = "none";
+}
+
+function info_mode(){
+    const encbtn = document.querySelector('#encr_mode');
+    const decrbtn = document.querySelector('#decr_mode');
+    const charcbtn = document.querySelector('#charc_mode');
+    const pinfobtn = document.querySelector('#info_mode');
+    const enc = document.getElementsByClassName("encrypt")[0];
+    const decr = document.getElementsByClassName("decrypt")[0];
+    const char = document.getElementsByClassName("charcodes")[0];
+    const pinfo = document.getElementsByClassName("pageinfo")[0];
+    decrbtn.classList = "";
+    encbtn.classList = "";
+    charcbtn.classList = "";
+    pinfobtn.classList = "selected";
+    decr.style.display = "none";
+    enc.style.display = "none";
+    char.style.display = "none";
+    pinfo.style.display = "inline-block";
 }

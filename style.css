@@ -264,3 +264,23 @@ Main
     -ms-transition: box-shadow 0.5s, border-color 0.5s;
     transition: box-shadow 0.5s, border-color 0.5s;
 }
+
+/*info*/
+.main > .pageinfo {
+    display: none;
+    margin-top: 10px;
+    border: 3px solid var(--selected-color);
+    padding: 5px;
+    background-color: var(--secondary-color);
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
+}
+
+.main > .pageinfo:hover {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px var(--main-color);
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
+}
