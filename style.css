@@ -1,4 +1,6 @@
 :root {
+    --btn-glow_one: rgba(44,187,99,.35);
+    --btn-glow_two: rgba(44,187,99,.25);
     --main-color: #0ca21d;
     --med-color: #0ebe20;
     --text-color : #aafbb5;
@@ -83,34 +85,33 @@ button {
     cursor: pointer;
     font-weight: 1000;
     font-size: 15px;
-    -webkit-transition: border-radius 0.5s ease;
-    -ms-transition: border-radius 0.5s ease;
-    transition: border-radius 0.5s ease;
+    -webkit-transition: border-radius 0.5s;
+    -ms-transition: border-radius 0.5s;
+    transition: border-radius 0.5s;
 }
 
 button:hover:enabled {
-    -webkit-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-    -webkit-transition: border-radius 0.5s ease;
-    -ms-transition: border-radius 0.5s ease;
-    transition: border-radius 0.5s ease;
+    -webkit-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    -ms-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
     background-color: var(--med-color);
     border-radius: 10px;
     border: 1px solid var(--text-color);
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: var(--btn-glow_one) 0 -25px 18px -14px inset,var(--btn-glow_two) 0 1px 2px,var(--btn-glow_two) 0 2px 4px,var(--btn-glow_two) 0 4px 8px,var(--btn-glow_two) 0 8px 16px,var(--btn-glow_two) 0 16px 32px;
 }
 
 button:active:enabled {
-    -webkit-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
+    -webkit-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    -ms-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
     background-color: var(--text-color);
 }
 
 button.selected:enabled {
-    -webkit-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
+    -webkit-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    -ms-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
     background-color: var(--text-color);
 }
 
@@ -210,14 +211,17 @@ Main
     padding: 5px;
     background-color: var(--secondary-color);
     display: inline-block;
-    -webkit-transition: box-shadow 0.5s ease;
-    -ms-transition: box-shadow 0.5s ease;
-    transition: box-shadow 0.5s ease;
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
 }
 
 .main > .encrypt:hover {
     border-color: var(--main-color);
     box-shadow: 0 0 10px var(--main-color);
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
 }
 
 
@@ -228,14 +232,17 @@ Main
     border: 3px solid var(--selected-color);
     padding: 5px;
     background-color: var(--secondary-color);
-    -webkit-transition: box-shadow 0.5s ease;
-    -ms-transition: box-shadow 0.5s ease;
-    transition: box-shadow 0.5s ease;
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
 }
 
 .main > .decrypt:hover {
     border-color: var(--main-color);
     box-shadow: 0 0 10px var(--main-color);
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
 }
 
 /*charcodes*/
@@ -245,12 +252,15 @@ Main
     border: 3px solid var(--selected-color);
     padding: 5px;
     background-color: var(--secondary-color);
-    -webkit-transition: box-shadow 0.5s ease;
-    -ms-transition: box-shadow 0.5s ease;
-    transition: box-shadow 0.5s ease;
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
 }
 
 .main > .charcodes:hover {
     border-color: var(--main-color);
     box-shadow: 0 0 10px var(--main-color);
+    -webkit-transition: box-shadow 0.5s, border-color 0.5s;
+    -ms-transition: box-shadow 0.5s, border-color 0.5s;
+    transition: box-shadow 0.5s, border-color 0.5s;
 }
