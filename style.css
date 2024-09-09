@@ -85,9 +85,9 @@ button {
     cursor: pointer;
     font-weight: 1000;
     font-size: 15px;
-    -webkit-transition: border-radius 0.5s;
-    -ms-transition: border-radius 0.5s;
-    transition: border-radius 0.5s;
+    -webkit-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    -ms-transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
+    transition: border-radius 0.5s, background-color 200ms linear, transform 0.2s linear;
 }
 
 button:hover:enabled {
