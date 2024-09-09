@@ -92,6 +92,9 @@ button:hover:enabled {
     -webkit-transition: background-color 100ms linear;
     -ms-transition: background-color 100ms linear;
     transition: background-color 100ms linear;
+    -webkit-transition: border-radius 0.5s ease;
+    -ms-transition: border-radius 0.5s ease;
+    transition: border-radius 0.5s ease;
     background-color: var(--med-color);
     border-radius: 10px;
     border: 1px solid var(--text-color);
@@ -133,6 +136,10 @@ textarea:hover{
     -webkit-transition: border 100ms linear;
     -ms-transition: border 100ms linear;
     transition: border 100ms linear;
+}
+
+textarea {
+    width: 90vw;
 }
 
 input:focus,
