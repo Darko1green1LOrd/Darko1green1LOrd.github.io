@@ -7,15 +7,27 @@ function disableSpellcheck(){
 }
 
 function hidemsg(){
-    const popup = document.querySelector('#infobox')
-    popup.style.display = "none";
+    const trigger = document.querySelector('#infobox-t');
+    trigger.checked = false;
 }
-function showmsg(text){
-    const popup = document.querySelector('#infobox')
-    popup.style.display = "block";
-    document.getElementById("popup_text").textContent = text;
 
-    setTimeout(hidemsg, 3000);
+function showmsg(titlevar,text1var,text2var="",duration=6000){
+    const trigger = document.querySelector('#infobox-t');
+    const title = document.querySelector('#infobox-title');
+    const text_1 = document.querySelector('#infobox-first');
+    const text_2 = document.querySelector('#infobox-second');
+    const ib_button = document.querySelector('#infobox-btn');
+
+    title.innerHTML = titlevar;
+    text_1.innerHTML = text1var;
+    text_2.innerHTML = text2var;
+    trigger.checked = true;
+
+    if(duration == 0){ib_button.style.display = "block";}
+    else{
+        ib_button.style.display = "none";
+        setTimeout(hidemsg, duration);
+    }
 }
 
 function runonload(){
