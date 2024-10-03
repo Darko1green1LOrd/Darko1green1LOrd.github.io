@@ -1,6 +1,7 @@
 :root {
     --btn-glow_one: rgba(44,187,99,.35);
     --btn-glow_two: rgba(44,187,99,.25);
+    --tooltipbg-bg: rgba(20, 55, 0, 0.7);
     --main-color: #0ca21d;
     --med-color: #0ebe20;
     --text-color : #aafbb5;
@@ -8,8 +9,10 @@
     --bg-color: #2b2d2b;
     --secondary-color: #131413;
     --third-color: #171817;
+    --fourth-color: #212922;
     --selected-color: #000;
     --disabled-color: #442323;
+    --darkgreen: #0d4208;
 }
 
 
@@ -26,7 +29,7 @@ Main colorings
 
 body {
     background-size: 500% 500%;
-    background-image: linear-gradient(-45deg, var(--bg-color), var(--selected-color), var(--bg-color) 100%);
+    background-image: linear-gradient(-45deg, var(--bg-color), var(--darkgreen), var(--bg-color) 100%);
     -webkit-animation: AnimateBG 20s ease infinite;
     animation: AnimateBG 20s ease infinite;
 }
@@ -55,6 +58,12 @@ body {
     }
 }
 
+.control-panel {
+    border-radius: 10px;
+    padding: 10px;
+    background-image: radial-gradient(var(--fourth-color), var(--tooltipbg-bg));
+}
+
 label {
     color: var(--main-color);
     background-color: var(--secondary-color)
@@ -68,9 +77,13 @@ input, textarea {
     vertical-align: middle;
     margin: 5px 10px 5px 0;
     padding: 10px;
-    background-color: var(--third-color);
+    background-color: var(--btn-glow_one);
     border: 1px solid var(--selected-color);
     color: var(--text-color);
+}
+
+textarea[readonly] {
+    background-color: var(--fourth-color);
 }
 
 button {
@@ -273,6 +286,7 @@ Main
     -webkit-transition: box-shadow 0.5s, border-color 0.5s;
     -ms-transition: box-shadow 0.5s, border-color 0.5s;
     transition: box-shadow 0.5s, border-color 0.5s;
+    margin-bottom: 10vh;
 }
 
 .main > .mp:hover {
