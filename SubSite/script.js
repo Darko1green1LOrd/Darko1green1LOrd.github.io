@@ -48,9 +48,10 @@ function setup_ChangeDetectors(){
 }
 
 function runonload(){
-    disableSpellcheck();
-    setup_ChangeDetectors();
     run_customselect();
+    disableSpellcheck();
+    get_saved_data();
+    setup_ChangeDetectors();
     changetheme();
     settingChanged(ge("huer_s"));
     settingChanged(ge("huer_t"));
