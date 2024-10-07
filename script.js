@@ -6,6 +6,16 @@ function disableSpellcheck(){
     }
 }
 
+function changeicon(icon){
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+    }
+    link.href = icon;
+}
+
 function autoresize(elem){
     const auto_resize = ge("autores_t");
     const scroll_pos = document.documentElement.scrollTop || document.body.scrollTop ;
@@ -51,6 +61,7 @@ function runonload(){
     run_customselect();
     disableSpellcheck();
     get_saved_data();
+    changeicon("favicon.ico");
     setup_ChangeDetectors();
     changetheme();
     settingChanged(ge("huer_s"));
