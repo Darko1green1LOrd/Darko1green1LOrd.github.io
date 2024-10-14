@@ -62,7 +62,6 @@ function runonload(){
     disableSpellcheck();
     try{get_saved_data();}
     catch (e){console.log("Failed to load saved data from url  "+e);}
-    changeicon("favicon.ico");
     setup_ChangeDetectors();
     changetheme();
     settingChanged(ge("huer_s"));
@@ -211,6 +210,13 @@ function save_data_in_url(url=document.URL){
         }
         else if (curr_item["type"] == "pwinputbox" && (curr_item["elem"].value != curr_item["default"] || curr_item["default"] == null)){
             to_add += data_keys[i]+"="+encodeURIComponent(XXTEA.encryptToBase64(curr_item["elem"].value,save_data["uid"]["elem"]));
+        }
+        else if (curr_item["type"] == "htmlvar" && (curr_item["elem"].innerHTML != curr_item["default"] || curr_item["default"] == null)){
+            to_add += data_keys[i]+"="+curr_item["elem"].innerHTML;
+            if (curr_item["value_type"] == "num"){
+                if (curr_item["min"] != null){to_add = (curr_item["elem"].innerHTML >= Number(curr_item["min"])) ? to_add : "";}
+                if (curr_item["max"] != null){to_add = (curr_item["elem"].innerHTML <= Number(curr_item["max"])) ? to_add : "";}
+            }
         }
         else if (curr_item["type"] == "customtheme"){
             var theme_sel = save_data["theme"]["elem"];
@@ -486,7 +492,7 @@ function copytext(elemid) { //https://stackoverflow.com/questions/28001722/how-t
 
 window.addEventListener("unhandledrejection", function(promiseRejectionEvent) {
     showmsg("Oops","Failed to copy the text automatically","you will have to copy it manually");
-}); 
+});
 
 function text2Binary(byte_length,text) { //https://stackoverflow.com/questions/14430633/how-to-convert-text-to-binary-code-in-javascript
     var saved_bn = ""
