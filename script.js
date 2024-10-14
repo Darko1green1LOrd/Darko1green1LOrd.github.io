@@ -60,7 +60,8 @@ function setup_ChangeDetectors(){
 function runonload(){
     run_customselect();
     disableSpellcheck();
-    get_saved_data();
+    try{get_saved_data();}
+    catch (e){console.log("Failed to load saved data from url  "+e);}
     changeicon("favicon.ico");
     setup_ChangeDetectors();
     changetheme();
@@ -92,7 +93,7 @@ function save_data_in_url(url=document.URL){
             elem = all_stylevars[asv].children[1].children[0];
             styles["loaded"][elem.dataset.varid] = elem.value;
         }
-        ctheme = "&ctheme="+btoa(JSON.stringify(styles["loaded"]));
+        ctheme = "&ctheme="+btoa(encodeURIComponent(JSON.stringify(styles["loaded"])));
     }
 
     var encodedParam = url.split("?")[0]+"?"+encodeURIComponent(`uid=${unique_id}&msgd=${msg_dura}&hueai=${hue_auto_i}&mtord=${mtor_dir}&hueat=${hue_auto_t}&huer=${hue_rotate_s}&theme=${theme_sel.selectedIndex}&themets=${theme_t_s}&ares=${ares}&lcalc=${lcalc}${ctheme}`);
@@ -222,7 +223,7 @@ function load_data(elem,value,type,tsc,min,max,uique_id){
     else if (type == "toggle"){elem.checked = value;}
     else if (type == "var"){eval(elem + " = " + value);}
     else if (type == "customtheme"){
-        styles["loaded"] = JSON.parse(atob(value));
+        styles["loaded"] = JSON.parse(decodeURIComponent(atob(value)));
         changetheme("loaded");
     }
 
@@ -451,45 +452,61 @@ function binary2Text(byte_length,text) { //https://stackoverflow.com/questions/1
     }
 }
 
-function switch_mode(ind){
+function switch_mode(ind,oper=null,desel=null){
     const mainbtn = ge('main_mode');
     const settingsmbtn = ge('settings_mode');
     const main = ge("main_p","geba");
     const settingsm = ge("settingsp","geba");
 
-    if (typeof(ind) == "number"){
-        mainbtn.classList = (ind == 0) ? "selected" : "";
-        settingsmbtn.classList = (ind == 1) ? "selected" : "";
-        main.style.display = (ind == 0) ? "inline-block" : "";
-        settingsm.style.display = (ind == 1) ? "inline-block" : "";
+    var all_btns = [mainbtn,settingsmbtn];
+    var sel_all = [];
+    var all_btns_length = all_btns.length;
+    for (var abi = 0; abi < all_btns_length; abi++) {sel_all.push(all_btns[abi].classList[0]);}
+    var sel_mode = sel_all.indexOf("selected");
+    var all_tabs = [main,settingsm];
+    var all_tabs_length = all_tabs.length;
+
+    if (desel == sel_mode){oper = "-";}
+    if (oper == "+"){
+        sel_mode = (sel_mode + 1 <= all_tabs_length-1) ? sel_mode + 1 : 0;
+        ind = sel_mode;
     }
-    else{
-        var all_btns = [mainbtn.classList[0],settingsmbtn.classList[0]];
-        var sel_mode = all_btns.indexOf("selected");
-        var all_tabs = [main,settingsm];
-        var all_tabs_length = all_tabs.length;
-        for (var ati = 0; ati < all_tabs_length; ati++) {
-            if (ind == "showall"){
+    else if (oper == "-"){
+        sel_mode = (sel_mode - 1 >= 0) ? sel_mode - 1 : all_tabs_length-1;
+        ind = sel_mode;
+    }
+
+    for (var ati = 0; ati < all_tabs_length; ati++) {
+        if (typeof(ind) == "number"){
+            if (ati == ind){
                 all_tabs[ati].style.display = "inline-block";
-                if (ati == sel_mode){
-                    all_tabs[ati].style.visibility = "visible";
-                }
-                else {
-                    all_tabs[ati].style.visibility = "hidden";
-                    all_tabs[ati].style.position = "absolute";
-                    all_tabs[ati].style.left = "-999em";
-                }
+                all_btns[ati].classList = "selected";
             }
-            else{
-                all_tabs[ati].style.visibility = "";
-                all_tabs[ati].style.position = "";
-                all_tabs[ati].style.left = "";
-                if (ati == sel_mode){
-                    all_tabs[ati].style.display = "inline-block";
-                }
-                else {
-                    all_tabs[ati].style.display = "";
-                }
+            else {
+                all_tabs[ati].style.display = "";
+                all_btns[ati].classList = "";
+            }
+        }
+        else if (ind == "showall"){
+            all_tabs[ati].style.display = "inline-block";
+            if (ati == sel_mode){
+                all_tabs[ati].style.visibility = "visible";
+            }
+            else {
+                all_tabs[ati].style.visibility = "hidden";
+                all_tabs[ati].style.position = "absolute";
+                all_tabs[ati].style.left = "-999em";
+            }
+        }
+        else if (ind == "restore"){
+            all_tabs[ati].style.visibility = "";
+            all_tabs[ati].style.position = "";
+            all_tabs[ati].style.left = "";
+            if (ati == sel_mode){
+                all_tabs[ati].style.display = "inline-block";
+            }
+            else {
+                all_tabs[ati].style.display = "";
             }
         }
     }
