@@ -55,7 +55,7 @@
                             <label for="huer_varman" >Manual</label>
                             <input type="range" min="0" max="360" value="0" data-defvalue="0" class="slider" id="huer_s" oninput="settingChanged(this)">
                             <input type="number" min="0" max="360" value="0" id="huer_v" placeholder="" onfocus="this.oldvalue = this.value;" onchange="settingChanged(this)" oninput="this.value = !!this.value && Math.abs(this.value) >= 0  && Math.abs(this.value) <= 360 ? Math.abs(this.value) : null">
-                            <span data-text="Allows you to easly change color of the site" class="tooltip">?</span>
+                            <span data-text="Allows you to easily change color of the site" class="tooltip">?</span>
                         </div>
                         <div>
                             <label for="huer_varauto" >Auto</label>
@@ -197,7 +197,7 @@
                         <div>
                             <label for="shares_var" >Share Settings</label>
                             <button type="button" id="shares_b" onclick="settingChanged(this)">Share</button>
-                            <span data-text="Generate a link so you can easly share this page with the exact settings you have" class="tooltip">?</span>
+                            <span data-text="Generate a link so you can easily share this page with the exact settings you have" class="tooltip">?</span>
                             <button type="button" id="copy_shares" onclick="copytext('shares_text')" disabled>Copy</button>
                         </div>
                     </div>
